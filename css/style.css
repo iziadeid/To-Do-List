@@ -1,0 +1,247 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+::-webkit-scrollbar {
+  display: none;
+}
+body {
+  /* font-family: Verdana, Geneva, Tahoma, sans-serif; */
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #eafcff;
+}
+.container {
+  width: 600px;
+  height: 650px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0px 8px 20px 0px #4dc6fbb0;
+}
+
+.title {
+  font-size: 45px;
+  font-weight: bold;
+  padding: 15px;
+  color: white;
+  text-align: center;
+  background: linear-gradient(135deg, #2df1fd, #50c1fb);
+  border-radius: 10px 10px 0 0;
+  position: relative;
+}
+.title span {
+  position: absolute;
+  font-size: 15px;
+  font-weight: normal;
+  top: 10px;
+  left: 10px;
+}
+@media (max-width: 600px) {
+  .container {
+    width: 400px;
+  }
+  .title span {
+    font-size: 12px;
+  }
+}
+
+.form {
+  padding: 20px 30px;
+  display: flex;
+  gap: 15px;
+}
+@media (max-width: 410px) {
+  .container {
+    width: 325px;
+  }
+  .title {
+    font-size: 35px;
+    padding: 20px;
+  }
+  .title span {
+    font-size: 11px;
+  }
+  .form {
+    padding: 20px 15px;
+  }
+}
+.form .input {
+  flex: 1;
+  position: relative;
+}
+.form #text {
+  padding: 6px;
+  background-color: transparent;
+  border: 2px solid #50c1fb;
+  width: 100%;
+  border-radius: 10px;
+  outline: none;
+  font-size: 20px;
+  color: #50c1fb;
+}
+.form .empty {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 12px;
+  cursor: pointer;
+  color: red;
+  transition: 0.3s;
+  opacity: 0;
+}
+.form .empty.open {
+  opacity: 1;
+}
+
+.form #add {
+  padding: 0px 14px;
+  background-color: #4bc6fb;
+  color: white;
+  font-size: 22px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+}
+.task-holder {
+  padding: 20px 0;
+  height: 465px;
+  overflow-y: scroll;
+  width: 106%;
+  margin: 0 -3%;
+}
+
+.task-holder .task {
+  display: flex;
+  align-items: center;
+  transition: 0.5s;
+  background-color: white;
+  border-left: 6px solid white;
+  width: calc(100% - 6%);
+  margin: 0 auto;
+}
+.task-holder .task:hover {
+  transform: scale(1.04);
+  width: calc(100% - 4%);
+  border-left: 6px solid #71c8fd;
+  box-shadow: 0px 0px 20px 0px #a4e4fd;
+  background-color: #2df1fd;
+}
+
+.task .content {
+  flex: 1;
+  padding: 10px 40px;
+  background-color: white;
+}
+.task .content .time {
+  display: block;
+  margin-bottom: 15px;
+  color: #cecece;
+  font-size: 12px;
+}
+
+.task .content textarea {
+  background-color: transparent;
+  border: none;
+  font-size: 20px;
+  outline: none;
+  pointer-events: none;
+  width: 100%;
+  color: #6e6e6e;
+  resize: none;
+  min-height: 46px;
+  caret-color: transparent;
+}
+.task .content textarea.edit {
+  pointer-events: visible;
+  border-bottom: 1px solid #36e4fc;
+  caret-color: #36e4fc;
+}
+
+.task.done .content textarea {
+  text-decoration: line-through #777 1px;
+  color: #cecece;
+}
+@media (max-width: 410px) {
+  .task .content {
+    padding: 10px 10px;
+  }
+  .task .content .time {
+    font-size: 11px;
+  }
+
+  .task .content textarea {
+    font-size: 16px;
+  }
+}
+.task .setting {
+  color: #2df1fd;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 0px 37px;
+  transition: 0.5s;
+  position: relative;
+}
+
+.task:hover .setting {
+  color: white;
+}
+
+.task.setting > i {
+  line-height: 58px;
+}
+.task .setting:hover > i {
+  animation: spin 1s linear infinite;
+}
+.task .setting span {
+  position: absolute;
+  background-color: white;
+  border-radius: 50%;
+  box-shadow: 0px 0px 9px 0px #a1a1a1ad;
+  transition: 0.5s;
+  opacity: 0;
+  z-index: -1;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #50c1fb;
+}
+.task .setting span:hover {
+  color: white;
+  background-color: #50c1fb;
+}
+.task .setting span i {
+  font-size: 18px;
+  text-align: center;
+  line-height: 35px;
+  width: 35px;
+}
+.task .setting span.open {
+  opacity: 1;
+  z-index: 1;
+}
+.task .setting .edit.open {
+  left: -45px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.task .setting .delete.open {
+  left: -10px;
+  top: calc(100% + 30px);
+}
+.task .setting .done.open {
+  left: -10px;
+  top: -30px;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
